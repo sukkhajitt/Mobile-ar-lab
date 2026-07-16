@@ -102,6 +102,8 @@
       const runButton = document.querySelector('#run-button');
       const runx2Button = document.querySelector('#run-x2-button');
       const statusButton = document.querySelector('#status-button');
+      const normalSpeed = 220;
+      const fastSpeed = normalSpeed * 2;
 
       let running = true;
       let warning = false;
@@ -121,16 +123,20 @@
       });
 
 
+      let fastMode = false;
+
       runx2Button.addEventListener('click', () => {
-      running = !running;
+        fastMode = !fastMode;
 
-      shaft.setAttribute(
-        'spin-control',
-        `active: ${running}; speed: 2`
-      );
+        shaft.setAttribute(
+          'spin-control',
+          `speed: ${fastMode ? fastSpeed : normalSpeed}; active: ${running}`
+        );
 
-      runx2Button.textContent = running ? 'หยุดมอเตอร์x2' : 'เริ่มมอเตอร์x2';
-    });
+        runx2Button.textContent = fastMode
+          ? 'หมุนปกติ'
+          : 'หมุนเร็ว x2';
+      });
 
 
 
